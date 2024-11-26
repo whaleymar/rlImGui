@@ -1,32 +1,32 @@
 /**********************************************************************************************
-*
-*   raylibExtras * Utilities and Shared Components for Raylib
-*
-*   rlImGui * basic ImGui integration
-*
-*   LICENSE: ZLIB
-*
-*   Copyright (c) 2024 Jeffery Myers
-*
-*   Permission is hereby granted, free of charge, to any person obtaining a copy
-*   of this software and associated documentation files (the "Software"), to deal
-*   in the Software without restriction, including without limitation the rights
-*   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*   copies of the Software, and to permit persons to whom the Software is
-*   furnished to do so, subject to the following conditions:
-*
-*   The above copyright notice and this permission notice shall be included in all
-*   copies or substantial portions of the Software.
-*
-*   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-*   SOFTWARE.
-*
-**********************************************************************************************/
+ *
+ *   raylibExtras * Utilities and Shared Components for Raylib
+ *
+ *   rlImGui * basic ImGui integration
+ *
+ *   LICENSE: ZLIB
+ *
+ *   Copyright (c) 2024 Jeffery Myers
+ *
+ *   Permission is hereby granted, free of charge, to any person obtaining a copy
+ *   of this software and associated documentation files (the "Software"), to deal
+ *   in the Software without restriction, including without limitation the rights
+ *   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ *   copies of the Software, and to permit persons to whom the Software is
+ *   furnished to do so, subject to the following conditions:
+ *
+ *   The above copyright notice and this permission notice shall be included in all
+ *   copies or substantial portions of the Software.
+ *
+ *   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ *   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ *   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ *   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ *   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ *   SOFTWARE.
+ *
+ **********************************************************************************************/
 
 #pragma once
 
@@ -40,18 +40,18 @@
 #define __declspec(x) __attribute__((x))
 #endif
 #if defined(BUILD_LIBTYPE_SHARED)
-#define RLIMGUIAPI __declspec(dllexport)     // We are building the library as a Win32 shared library (.dll)
+#define RLIMGUIAPI __declspec(dllexport)  // We are building the library as a Win32 shared library (.dll)
 #elif defined(USE_LIBTYPE_SHARED)
-#define RLIMGUIAPI __declspec(dllimport)     // We are using the library as a Win32 shared library (.dll)
+#define RLIMGUIAPI __declspec(dllimport)  // We are using the library as a Win32 shared library (.dll)
 #endif
 #else
 #if defined(BUILD_LIBTYPE_SHARED)
-#define RLIMGUIAPI __attribute__((visibility("default"))) // We are building as a Unix shared library (.so/.dylib)
+#define RLIMGUIAPI __attribute__((visibility("default")))  // We are building as a Unix shared library (.so/.dylib)
 #endif
 #endif
 
 #ifndef RLIMGUIAPI
-#define RLIMGUIAPI       // Functions defined as 'extern' by default (implicit specifiers)
+#define RLIMGUIAPI  // Functions defined as 'extern' by default (implicit specifiers)
 #endif
 
 #ifndef NO_FONT_AWESOME
@@ -132,7 +132,7 @@ RLIMGUIAPI void rlImGuiBeginDelta(float deltaTime);
 /// Uses the current ImGui Cursor position and the full texture size.
 /// </summary>
 /// <param name="image">The raylib texture to draw</param>
-RLIMGUIAPI void rlImGuiImage(const Texture *image);
+RLIMGUIAPI void rlImGuiImage(const rl::Texture* image);
 
 /// <summary>
 /// Draw a texture as an image in an ImGui Context at a specific size
@@ -142,7 +142,7 @@ RLIMGUIAPI void rlImGuiImage(const Texture *image);
 /// <param name="image">The raylib texture to draw</param>
 /// <param name="width">The width of the drawn image</param>
 /// <param name="height">The height of the drawn image</param>
-RLIMGUIAPI void rlImGuiImageSize(const Texture *image, int width, int height);
+RLIMGUIAPI void rlImGuiImageSize(const rl::Texture* image, int width, int height);
 
 /// <summary>
 /// Draw a texture as an image in an ImGui Context at a specific size
@@ -151,7 +151,7 @@ RLIMGUIAPI void rlImGuiImageSize(const Texture *image, int width, int height);
 /// </summary>
 /// <param name="image">The raylib texture to draw</param>
 /// <param name="size">The size of drawn image</param>
-RLIMGUIAPI void rlImGuiImageSizeV(const Texture* image, Vector2 size);
+RLIMGUIAPI void rlImGuiImageSizeV(const rl::Texture* image, rl::Vector2 size);
 
 /// <summary>
 /// Draw a portion texture as an image in an ImGui Context at a defined size
@@ -162,13 +162,13 @@ RLIMGUIAPI void rlImGuiImageSizeV(const Texture* image, Vector2 size);
 /// <param name="destWidth">The width of the drawn image</param>
 /// <param name="destHeight">The height of the drawn image</param>
 /// <param name="sourceRect">The portion of the texture to draw as an image. Negative values for the width and height will flip the image</param>
-RLIMGUIAPI void rlImGuiImageRect(const Texture* image, int destWidth, int destHeight, Rectangle sourceRect);
+RLIMGUIAPI void rlImGuiImageRect(const rl::Texture* image, int destWidth, int destHeight, rl::Rectangle sourceRect);
 
 /// <summary>
 /// Draws a render texture as an image an ImGui Context, automatically flipping the Y axis so it will show correctly on screen
 /// </summary>
 /// <param name="image">The render texture to draw</param>
-RLIMGUIAPI void rlImGuiImageRenderTexture(const RenderTexture* image);
+RLIMGUIAPI void rlImGuiImageRenderTexture(const rl::RenderTexture* image);
 
 /// <summary>
 /// Draws a render texture as an image an ImGui Context, automatically flipping the Y axis so it will show correctly on screen
@@ -176,7 +176,7 @@ RLIMGUIAPI void rlImGuiImageRenderTexture(const RenderTexture* image);
 /// </summary>
 /// <param name="image">The render texture to draw</param>
 /// <param name="center">When true the image will be centered in the content area</param>
-RLIMGUIAPI void rlImGuiImageRenderTextureFit(const RenderTexture* image, bool center);
+RLIMGUIAPI void rlImGuiImageRenderTextureFit(const rl::RenderTexture* image, bool center);
 
 /// <summary>
 /// Draws a texture as an image button in an ImGui context. Uses the current ImGui cursor position and the full size of the texture
@@ -184,7 +184,7 @@ RLIMGUIAPI void rlImGuiImageRenderTextureFit(const RenderTexture* image, bool ce
 /// <param name="name">The display name and ImGui ID for the button</param>
 /// <param name="image">The texture to draw</param>
 /// <returns>True if the button was clicked</returns>
-bool rlImGuiImageButton(const char* name, const Texture* image);
+bool rlImGuiImageButton(const char* name, const rl::Texture* image);
 
 /// <summary>
 /// Draws a texture as an image button in an ImGui context. Uses the current ImGui cursor position and the specified size.
@@ -193,7 +193,7 @@ bool rlImGuiImageButton(const char* name, const Texture* image);
 /// <param name="image">The texture to draw</param>
 /// <param name="size">The size of the button</param>
 /// <returns>True if the button was clicked</returns>
-RLIMGUIAPI bool rlImGuiImageButtonSize(const char* name, const Texture* image, struct ImVec2 size);
+RLIMGUIAPI bool rlImGuiImageButtonSize(const char* name, const rl::Texture* image, struct ImVec2 size);
 
 #ifdef __cplusplus
 }
