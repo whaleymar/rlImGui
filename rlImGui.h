@@ -176,7 +176,8 @@ RLIMGUIAPI void rlImGuiImageRenderTexture(const rl::RenderTexture* image);
 /// </summary>
 /// <param name="image">The render texture to draw</param>
 /// <param name="center">When true the image will be centered in the content area</param>
-RLIMGUIAPI void rlImGuiImageRenderTextureFit(const rl::RenderTexture* image, bool center);
+/// <returns>A rectangle containing the position and size of the drawn texture. Position is relative to the current ImGui window</returns>
+RLIMGUIAPI rl::Rectangle rlImGuiImageRenderTextureFit(const rl::RenderTexture* image, bool center);
 
 /// <summary>
 /// Draws a texture as an image button in an ImGui context. Uses the current ImGui cursor position and the full size of the texture
