@@ -36,7 +36,6 @@
 
 #include "imgui.h"
 
-#include <cstdint>
 #include <limits>
 #include <map>
 #include <math.h>
@@ -558,22 +557,22 @@ rl::Rectangle rlImGuiImageRenderTextureFit(const RenderTexture* image, bool cent
     int sizeX = int(image->texture.width * scale);
     int sizeY = int(image->texture.height * scale);
 
-    int dstX = ImGui::GetCursorPosX();
-    int dstY = ImGui::GetCursorPosY();
+    int dstOffsetX = 0;
+    int dstOffsetY = 0;
 
     if (center) {
         // SetCursorPos sets the position where the next item will be drawn
-        dstX = area.x / 2 - sizeX / 2;
-        dstY = ImGui::GetCursorPosY() + (area.y / 2 - sizeY / 2);
-        ImGui::SetCursorPosX(dstX);
-        ImGui::SetCursorPosY(dstY);
+        dstOffsetX = area.x / 2 - sizeX / 2;
+        dstOffsetY = area.y / 2 - sizeY / 2;
+        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + dstOffsetX);
+        ImGui::SetCursorPosY(ImGui::GetCursorPosY() + dstOffsetY);
     }
 
     rlImGuiImageRect(&image->texture, sizeX, sizeY, Rectangle{0, 0, float(image->texture.width), -float(image->texture.height)});
 
     return rl::Rectangle{
-        .x = (float)dstX,
-        .y = (float)dstY,
+        .x = (float)dstOffsetX,
+        .y = (float)dstOffsetY,
         .width = (float)sizeX,
         .height = (float)sizeY,
     };
